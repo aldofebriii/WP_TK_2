@@ -19,17 +19,21 @@ use function Laravel\Prompts\select;
 
 
 
-Route::get('/graph/{id}', function ($id) {
-    if(!$id) {
-        $id = 1;
+Route::get('/graph', function () {
+    $rangkuman =  StudentController::getGrades();
+    $students = StudentController::getStudents();
+    $hasil = new stdClass();
+    $length = 0;
+    foreach($rangkuman as $r) {
+        $hasil->{$r->grade} = $r->jumlah;
+        $length += $r->jumlah;
     };
-    $student =  StudentController::getStudent($id)->first();
-    $studentsList = DB::table('students')->select('idStudents as id', 'name')->get();
-    return view('graph', ["student" => $student, "studentsList" => $studentsList]);
-});
-
-Route::get('/graph', function() {
-    return response()->redirectTo('/graph/1');
+    foreach(['A', 'B', 'C', 'D', 'E'] as $grade ){
+        if(!isset($hasil->{$grade})) {
+            $hasil->{$grade} =0;
+        };
+    };
+    return view('graph', ["hasil" => $hasil, "length" => $length, 'students' => $students]);
 });
 
 Route::get('/', function () {

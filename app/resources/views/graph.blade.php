@@ -50,24 +50,39 @@
             <a href="/" style="text-align:center;text-decoration:none;color: black;">Home</a>
         </div>
         <div class="grafik-container">
-            <div class="grafik-bar" style="height: {{$student->nilai_quiz}}%;"></div> <!-- Change height according to value -->
-            <div class="grafik-bar" style="height: {{$student->nilai_tugas}}%;"></div>
-            <div class="grafik-bar" style="height: {{$student->nilai_absensi}}%;"></div>
-            <div class="grafik-bar" style="height: {{$student->nilai_praktek}}%;"></div>
-            <div class="grafik-bar" style="height: {{$student->nilai_uas}}%;"></div>
+            @foreach (['A', 'B', 'C', 'D', 'E'] as $g)
+                <div class="grafik-bar" style="height: {{($hasil->$g/$length)*100}}%;"></div> 
+            @endforeach<!-- Change height according to value -->
         </div>
         <div class="grafik-label">
-            <div class="nilai-label">Nilai Quiz</div>
-            <div class="nilai-label">Nilai Tugas</div>
-            <div class="nilai-label">Nilai Absensi</div>
-            <div class="nilai-label">Nilai Praktek</div>
-            <div class="nilai-label">Nilai UAS</div>
+            <div class="nilai-label">A</div>
+            <div class="nilai-label">B</div>
+            <div class="nilai-label">C</div>
+            <div class="nilai-label">D</div>
+            <div class="nilai-label">E</div>
         </div>
-        <div class="list-mahasiswa">
-            @foreach ($studentsList as $s)
-                <li><a href="{{ $s->id }}">{{ $s-> name }}</a></li>
-            @endforeach
-        </div>
+        <table>
+                <th>Nama</th>
+                <th>Nilai Quiz</th>
+                <th>Nilai Tugas</th>
+                <th>Nilai Absensi</th>
+                <th>Nilai Praktek</th>
+                <th>Nilai Uas</th>
+                <th>Grade</th>
+            <tbody>
+                @foreach ($students as $s) 
+                <tr>
+                    <td>{{$s->name}}</td>
+                    <td>{{$s->nilai_quiz}}</td>
+                    <td>{{$s->nilai_tugas}}</td>
+                    <td>{{$s->nilai_absensi}}</td>
+                    <td>{{$s->nilai_praktek}}</td>
+                    <td>{{$s->nilai_uas}}</td>
+                    <td>{{$s->grade}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </body> 
 </html>

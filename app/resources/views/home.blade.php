@@ -60,15 +60,15 @@
             <label for="namaMahasiswa">Nama Mahasiswa:</label>
             <input type="text" id="namaMahasiswa" name="namaMahasiswa" required>
             <label for="nilaiQuiz">Nilai Quiz:</label>
-            <input type="number" id="nilaiQuiz" name="nilaiQuiz" min="0" max="100" required>
+            <input type="number" step='any' id="nilaiQuiz" name="nilaiQuiz" min="0" max="100" required>
             <label for="nilaiTugas">Nilai Tugas:</label>
-            <input type="number" id="nilaiTugas" name="nilaiTugas" min="0" max="100" required>
+            <input type="number" step='any'  id="nilaiTugas" name="nilaiTugas" min="0" max="100" required>
             <label for="nilaiAbsensi">Nilai Absensi:</label>
-            <input type="number" id="nilaiAbsensi" name="nilaiAbsensi" min="0" max="100" required>
+            <input type="number" step='any'  id="nilaiAbsensi" name="nilaiAbsensi" min="0" max="100" required>
             <label for="nilaiPraktek">Nilai Praktek:</label>
-            <input type="number" id="nilaiPraktek" name="nilaiPraktek" min="0" max="100" required>
+            <input type="number" step='any'  id="nilaiPraktek" name="nilaiPraktek" min="0" max="100" required>
             <label for="nilaiUAS">Nilai UAS:</label>
-            <input type="number" id="nilaiUas" name="nilaiUas" min="0" max="100" required>
+            <input type="number" step='any'  id="nilaiUas" name="nilaiUas" min="0" max="100" required>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -97,11 +97,11 @@
                 },
                 body: JSON.stringify({
                     name: namaMahasiswa,
-                    nilai_quiz: parseInt(nilaiQuiz),
-                    nilai_tugas: parseInt(nilaiTugas),
-                    nilai_absensi: parseInt(nilaiAbsensi),
-                    nilai_praktek: parseInt(nilaiPraktek),
-                    nilai_uas : parseInt(nilaiUas)
+                    nilai_quiz: parseFloat(nilaiQuiz),
+                    nilai_tugas: parseFloat(nilaiTugas),
+                    nilai_absensi: parseFloat(nilaiAbsensi),
+                    nilai_praktek: parseFloat(nilaiPraktek),
+                    nilai_uas : parseFloat(nilaiUas)
                 })
             });
 
